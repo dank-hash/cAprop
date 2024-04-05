@@ -2,6 +2,7 @@ workflows:
   simulator-native-ios:
     name: cashprop
     max_build_duration: 120
+  working_directory: ./CashappSpoof
     instance_type: mac_mini_m1
     environment:
       vars:
