@@ -10,7 +10,7 @@ workflows:
         bundle_identifier: com.cash.app
       vars:
         vars:
-          XCODE_PROJECT: "Cash App.xcodeproj"
+          XCODE_PROJECT: "CashApp.xcodeproj"
           XCODE_SCHEME: "CashappSpoof"
           BUNDLE_ID: "com.cash.app"
       xcode: latest
