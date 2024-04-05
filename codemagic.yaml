@@ -10,14 +10,11 @@ workflows:
       xcode: 14.0
       cocoapods: default
     scripts:
-      - name: Set working directory to CashappSpoof
-        script: |
-          cd CashappSpoof
       - name: Install CocoaPods dependencies
-        working_directory: ios/podfile
         script: | 
           pod install
       - name: Build the .app
+        working_directory: CashappSpoof
         script: |
           xcodebuild build \
             -workspace "$XCODE_WORKSPACE" \
