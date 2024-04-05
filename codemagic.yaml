@@ -2,7 +2,6 @@ workflows:
   simulator-native-ios:
     name: cashprop
     max_build_duration: 120
-  working_directory: ./CashappSpoof
     instance_type: mac_mini_m1
     environment:
       vars:
@@ -16,6 +15,7 @@ workflows:
           pod install
       - name: Build the .app
         script: | 
+        working_directory: CashappSpoof
           xcodebuild build \
             -workspace "$XCODE_WORKSPACE" \
             -scheme "$XCODE_SCHEME" \
@@ -25,6 +25,7 @@ workflows:
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO 
+
     artifacts:
       - /tmp/xcodebuild_logs/*.log
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
