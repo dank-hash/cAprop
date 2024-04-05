@@ -9,9 +9,7 @@ workflows:
         distribution_type: development
         bundle_identifier: com.cash.app
         vars:
-          XCODE_PROJECT: "CashApp.xcodeproj"
-          XCODE_SCHEME: "CashappSpoof"
-          BUNDLE_ID: "com.cash.app"
+
       xcode: latest
 scripts:
   # ...
