@@ -7,7 +7,7 @@ workflows:
     environment:
       vars:
         BUNDLE_ID: com.cash.prop
-        XCODE_PROJECT: "CashApp.xcworkspace" # <-- Put the name of your Xcode workspace here
+        XCODE_PROJECT: "CashApp.xcodeproj" # <-- Put the name of your Xcode workspace here
         XCODE_SCHEME: "CashappSpoof" # <-- Put the name of your Xcode scheme here
       xcode: latest
 scripts:
