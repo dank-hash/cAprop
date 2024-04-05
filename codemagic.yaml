@@ -1,15 +1,20 @@
+
 workflows:
-ios-native:
-  environment:
-    vars:
-      BUNDLE_ID: "com.cash.app"
-      XCODE_WORKSPACE: "CashApp.xcworkspace" # <-- Name of your Xcode workspace
-      XCODE_SCHEME: "CashappSpoof" # <-- Name of your Xcode scheme
+  ios-native-workflow:
+    name: Cash App
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    environment:
+      vars:
+        BUNDLE_ID: com.cash.prop
+        XCODE_PROJECT: "CashApp.xcworkspace" # <-- Put the name of your Xcode workspace here
+        XCODE_SCHEME: "CashappSpoof" # <-- Put the name of your Xcode scheme here
+      xcode: latest
 scripts:
-  # ...
   - name: Build ipa for distribution
     script: | 
       xcode-project build-ipa \
+      
         --workspace "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
         --scheme "$XCODE_SCHEME"
 artifacts:
