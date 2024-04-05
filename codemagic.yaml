@@ -8,7 +8,6 @@ workflows:
       ios_signing:
         distribution_type: development
         bundle_identifier: com.cash.app
-        vars:
 
       xcode: latest
 scripts:
