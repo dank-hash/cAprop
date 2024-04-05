@@ -11,6 +11,7 @@ workflows:
       cocoapods: default
     scripts:
       - name: Install CocoaPods dependencies
+        working_directory: ios
         script: | 
           pod install
       - name: Build the .app
