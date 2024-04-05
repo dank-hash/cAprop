@@ -7,12 +7,12 @@ workflows:
     environment:
       ios_signing:
         distribution_type: development
-        bundle_identifier: com.cashapp.prop
+        bundle_identifier: com.cash.app
       vars:
         vars:
           XCODE_PROJECT: "Cash App.xcodeproj"
           XCODE_SCHEME: "CashappSpoof"
-          BUNDLE_ID: "io.codemagic.swiftqube"
+          BUNDLE_ID: "com.cash.app"
       xcode: latest
 scripts:
   # ...
@@ -21,8 +21,10 @@ scripts:
       xcode-project build-ipa \
         --workspace "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
         --scheme "$XCODE_SCHEME"
+
 artifacts:
   - build/ios/ipa/*.ipa
   - /tmp/xcodebuild_logs/*.log
   - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
   - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+
