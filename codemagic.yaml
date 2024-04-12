@@ -1,5 +1,4 @@
-
-
+---
 workflows:
   ios-native-workflow:
     name: iOS Native
@@ -7,7 +6,7 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       ios_signing:
-
+      
       vars:
         BUNDLE_ID: "io.codemagic.sample.iosnative"
         XCODE_WORKSPACE: "CodemagicSample.xcworkspace" # <-- Put the name of your Xcode workspace here
@@ -16,6 +15,10 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
+      - name: Factory Reset Mac M1
+        script: |
+          diskutil eraseDisk APFS 'Macintosh HD' /dev/disk0
+          reboot
       - name: Install CocoaPods dependencies
         script: | 
           pod install
@@ -31,27 +34,11 @@ workflows:
           xcode-project build-ipa \
             --workspace "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
             --scheme "$XCODE_SCHEME"
-            - name: Factory Reset Mac
-  hosts: localhost
-  gather_facts: false
 
-  tasks:
-    - name: Unmount all volumes
-      command: diskutil unmountDisk force /dev/{{ item }}
-      loop: "{{ query('diskutil', 'list', '-plist', 'external', 'physical', 'internal', 'logical', 'virtual') | from_xmlstring }}"
-      ignore_errors: true
-
-    - name: Erase and format main drive
-      command: diskutil eraseDisk JHFS+ 'Macintosh HD' /dev/disk0
-      ignore_errors: true
-
-    - name: Reinstall macOS
-      command: "/Applications/Install macOS High Sierra.app/Contents/Resources/startosinstall --eraseinstall --newvolumename 'Macintosh HD' --agreetolicense"
-      become: true
-      become_user: root
-      ignore_errors: true
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+
+
