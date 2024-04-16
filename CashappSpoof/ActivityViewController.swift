@@ -6,6 +6,8 @@
 import UIKit
 
 
+
+
 class ActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var userName : String?
     var amount : String?
@@ -15,8 +17,9 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+        //tableView.delegate = self
+        //tableView.dataSource = self
+        tableView.separatorStyle = .none
         list = DataManger.shared.payment
         tableView.reloadData()
         // Do any additional setup after loading the view.
