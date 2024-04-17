@@ -1,14 +1,13 @@
-workflows:
-  ios-native-workflow:
-    name: iOS Native
-    max_build_duration: 120
-    instance_type: mac_mini_m1
 
+ios-native:
+  environment:
+    vars:
+      xcode: latest
+      cocoapods: default
     scripts:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set Default Scheme
-        run: |
+      - name: Install CocoaPods dependencies
+        script: | 
+          pod install
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat > default
@@ -27,8 +26,8 @@ workflows:
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
           xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" | xcpretty && exit ${PIPESTATUS[0]}
-    artifacts:
-      - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+artifacts:
+  - build/ios/ipa/*.ipa
+  - /tmp/xcodebuild_logs/*.log
+  - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+  - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
