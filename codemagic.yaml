@@ -4,7 +4,7 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
 
-    steps:
+    scripts:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set Default Scheme
