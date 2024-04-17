@@ -1,11 +1,10 @@
+
 //
 //  ActivityViewController.swift
 //  CashappSpoof
 
 
 import UIKit
-
-
 
 
 class ActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -17,9 +16,8 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tableView.delegate = self
-        //tableView.dataSource = self
-        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
         list = DataManger.shared.payment
         tableView.reloadData()
         // Do any additional setup after loading the view.
@@ -45,8 +43,8 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-       let payment = list[indexPath.row]
-       let activity = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ActivityDetailViewController") as! ActivityDetailViewController
+        let payment = list[indexPath.row]
+        let activity = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ActivityDetailViewController") as! ActivityDetailViewController
         activity.username = payment.userName
         activity.amount = payment.amount
         activity.TimeSent = payment.timeSent
