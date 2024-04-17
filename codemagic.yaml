@@ -8,6 +8,7 @@ ios-native:
       - name: Install CocoaPods dependencies
         script: | 
           pod install
+      - name: Set SCheme
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat > default
