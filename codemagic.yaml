@@ -16,7 +16,7 @@ workflows:
     scripts:
       - name: Clone repository
         run: git clone https://github.com/Santana-Says/Cache-App.git
-\
+
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
