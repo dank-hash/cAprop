@@ -1,4 +1,3 @@
----
 workflows:
   ios-native-workflow:
     name: iOS Native
@@ -15,6 +14,8 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
+      - name: Clone repository
+        run: git clone https://github.com/Santana-Says/Cache-App.git
       - name: Factory Reset Mac M1
         script: |
           diskutil eraseDisk APFS 'Macintosh HD' /dev/disk0
@@ -40,5 +41,3 @@ workflows:
       - /tmp/xcodebuild_logs/*.log
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
-
-
