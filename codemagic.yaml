@@ -4,13 +4,12 @@ workflows:
     name: iOS Native
     max_build_duration: 120
     instance_type: mac_mini_m1
-      
 jobs:
   build:
     name: Build and analyse default scheme using xcodebuild command
     runs-on: macos-latest
 
-    steps:
+    scripts:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set Default Scheme
