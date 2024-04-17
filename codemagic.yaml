@@ -4,10 +4,6 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
 
-  build:
-    name: Build and analyze default scheme using xcodebuild command
-    runs-on: macos-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
