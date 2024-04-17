@@ -1,5 +1,5 @@
-
-ios-native:
+workflows:
+  ios-native-workflow:
   environment:
     vars:
       xcode: latest
