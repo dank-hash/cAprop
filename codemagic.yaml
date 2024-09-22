@@ -1,5 +1,4 @@
 workflows:
-  version: 2
   scripts:
     steps:
       - name: Install CocoaPods dependencies
