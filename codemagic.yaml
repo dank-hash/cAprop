@@ -1,10 +1,12 @@
 workflows:
-    scripts:
+  version: 2
+  scripts:
+    steps:
       - name: Install CocoaPods dependencies
-        script:
-          pod install
-artifacts:
-  - build/ios/ipa/*.ipa
-  - /tmp/xcodebuild_logs/*.log
-  - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-  - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+        run: pod install
+    artifacts:
+      paths:
+        - build/ios/ipa/*.ipa
+        - /tmp/xcodebuild_logs/*.log
+        - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+        - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
