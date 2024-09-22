@@ -1,8 +1,4 @@
 workflows:
-  environment:
-    vars:
-      xcode: latest
-      cocoapods: default
     scripts:
       - name: Install CocoaPods dependencies
         script: | 
